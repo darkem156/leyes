@@ -1,37 +1,37 @@
 from django.db import models
 
 class Tema(models.Model):
-    id_api = models.IntegerField(unique=True)
-    nombre = models.CharField(max_length=255)
+    tema = models.CharField(max_length=255)
+    external_id = models.IntegerField(null=True, blank=True, unique=True)  # ID de la API
 
     def __str__(self):
-        return self.nombre
+        return self.tema
 
 
 class Decreto(models.Model):
-    id_api = models.IntegerField(unique=True)
     numero = models.IntegerField()
+    external_id = models.IntegerField(null=True, blank=True, unique=True)  # ID de la API
 
     def __str__(self):
         return f"Decreto {self.numero}"
 
 
 class Ley(models.Model):
-    id_api = models.IntegerField(unique=True)
+    id = models.IntegerField(primary_key=True)
     titulo = models.CharField(max_length=500)
     abrogada = models.BooleanField(default=False)
     comentario = models.TextField(blank=True, null=True)
-    temas = models.ManyToManyField(Tema, related_name='leyes')
+    tema = models.ManyToManyField(Tema, related_name='leyes')
 
     def __str__(self):
         return self.titulo
 
 
 class Historial(models.Model):
-    id_api = models.IntegerField(unique=True)
+    id = models.IntegerField(primary_key=True)
     ley = models.ForeignKey(Ley, on_delete=models.CASCADE, related_name='historial')
     fecha_ppo = models.DateField()
-    ruta_archivo = models.URLField()
+    rutaArchivo = models.URLField()
     comentario = models.TextField(blank=True, null=True)
     estatus = models.BooleanField(default=False)
     activo = models.BooleanField(default=True)
