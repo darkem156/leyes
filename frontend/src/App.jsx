@@ -8,11 +8,13 @@ function App() {
   return (
       <BrowserRouter>
         <Header />
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </Suspense>
+        <main>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </Suspense>
+        </main>
       </BrowserRouter>
   )
 }

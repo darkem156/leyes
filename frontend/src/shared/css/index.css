@@ -1,0 +1,28 @@
+html, body {
+  height: 100vh;
+  margin: 0;
+}
+
+body {
+  display: flex;
+}
+
+#root {
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+#root {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
